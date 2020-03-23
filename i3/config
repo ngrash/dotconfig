@@ -1,20 +1,54 @@
+# vi: ft=i3config
+#
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+set $terminal urxvtc -fn xft:Hack
+
 set $mod Mod4
 font pango:Hack
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+exec $terminal
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 bindsym $mod+m mode "menu"
 mode "menu" {
-		bindsym c exec chromium; mode "default"
+	bindsym c exec chromium; mode "default"
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
+
+set_from_resource $background i3wm.background #ffffff
+set_from_resource $foreground i3wm.foreground #ffffff
+set_from_resource $fg_black   i3wm.color0  #000000
+set_from_resource $bg_black   i3wm.color8  #000000
+set_from_resource $fg_red     i3wm.color1  #ff0000
+set_from_resource $bg_red     i3wm.color9  #ff0000
+set_from_resource $fg_green   i3wm.color2  #00ff00
+set_from_resource $bg_green   i3wm.color10 #00ff00
+set_from_resource $fg_yellow  i3wm.color3  #00ff00
+set_from_resource $bg_yellow  i3wm.color11 #00ff00
+set_from_resource $fg_blue    i3wm.color4  #0000ff
+set_from_resource $bg_blue    i3wm.color12 #0000ff
+set_from_resource $fg_magenta i3wm.color5  #000000
+set_from_resource $bg_magenta i3wm.color13 #000000
+set_from_resource $fg_cyan    i3wm.color6  #000000
+set_from_resource $bg_cyan    i3wm.color14 #000000
+set_from_resource $fg_white   i3wm.color7  #000000
+set_from_resource $bg_white   i3wm.color15 #000000
+
+# class                 border  backgr.    text        indicator child_border
+client.focused          $fg_blue $bg_green $foreground $fg_green $fg_blue
+client.focused_inactive $fg_blue $bg_green $foreground $foreground $fg_black
+client.unfocused        $fg_blue $bg_green #ff0000     #000000   $background 
+client.urgent           $fg_blue $bg_green #ff0000     #000000   $foreground
+client.placeholder      $fg_blue $bg_green #ff0000     #000000   $foreground
+client.background       #ff0000
 
 # No title bar
 default_border pixel
@@ -30,8 +64,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt -fn xft:Hack
-
+bindsym $mod+Return exec $terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -129,9 +162,13 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+
 bar {
         status_command i3status
-
+	colors {
+		statusline $foreground
+		background $background
+		inactive_workspace $fg_green $background $foreground
+		focused_workspace $fg_green $fg_green $foreground
+	}
 }
