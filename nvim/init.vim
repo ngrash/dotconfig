@@ -14,6 +14,7 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'mboughaba/i3config.vim'
+Plug 'LnL7/vim-nix'
 
 call plug#end()
 
