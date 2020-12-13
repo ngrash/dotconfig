@@ -1,6 +1,6 @@
-URxvt*.font: xft:Hack
-URxvt*.scrollBar: false
-URxvt*.iso14755 : false
+*.font: xft:Hack
+*.faceSize: 12
+*.iso14755 : false
 
 ! special
 *.foreground:   #c5c8c6

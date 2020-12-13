@@ -15,6 +15,7 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'mboughaba/i3config.vim'
 Plug 'LnL7/vim-nix'
+Plug 'alvan/vim-closetag'
 
 call plug#end()
 
